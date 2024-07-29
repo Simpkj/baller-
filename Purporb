@@ -1,0 +1,84 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://16139108718"
+
+local animationTrack = humanoid:LoadAnimation(animation)
+
+local pauseTime = 1 -- Time to pause the animation
+local resumeAfter = 4  -- Duration of the pause
+
+-- Function to resume the animation after the pause
+local function resumeAnimation()
+    animationTrack:AdjustSpeed(1)
+end
+
+-- Function to pause the animation
+local function pauseAnimation()
+    animationTrack:AdjustSpeed(0)
+    -- Wait for the specified duration, then resume the animation
+    delay(resumeAfter, resumeAnimation)
+end
+
+-- Connect to the RunService.Heartbeat event to check the animation's time position
+local connection
+connection = RunService.Heartbeat:Connect(function()
+    if animationTrack.TimePosition >= pauseTime and animationTrack.IsPlaying then
+        -- Pause the animation and disconnect the heartbeat event
+        pauseAnimation()
+        connection:Disconnect()
+    end
+end)
+
+-- Play the animation
+animationTrack:Play()
+
+wait()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+-- Function to create and return a part with particle effects
+local function createOrb(size, color, rate, spreadAngle, sparkleSize)
+    local part = Instance.new("Part")
+    part.Size = size
+    part.Anchored = true
+    part.CanCollide = false
+    part.Parent = workspace
+    
+    local sparkles = Instance.new("ParticleEmitter")
+    sparkles.Lifetime = NumberRange.new(0.1, 1)
+    sparkles.Rate = rate
+    sparkles.Speed = NumberRange.new(1, 1)
+    sparkles.Size = NumberSequence.new(sparkleSize, 0) -- Set sparkle size
+    sparkles.Color = color
+    sparkles.RotSpeed = NumberRange.new(0, 0)
+    sparkles.SpreadAngle = spreadAngle
+    sparkles.Parent = part
+    
+    return part
+end
+
+-- Create the orbs with updated sparkle sizes
+local orb1 = createOrb(Vector3.new(0.01, 0.01, 0.01), ColorSequence.new(Color3.new(222, 0, 222)), 100, Vector2.new(0, 0), 10)
+local orb2 = createOrb(Vector3.new(0.1, 0.1, 0.1), ColorSequence.new(Color3.new(255, 255, 255)), 500, Vector2.new(360, 360), 7)
+local orb3 = createOrb(Vector3.new(0.1, 0.1, 0.1), ColorSequence.new(Color3.new(255, 255, 255)), 500, Vector2.new(360, 360), 7)
+
+-- Update the positions of the orbs to always be in front of the player, slightly to the left, and 0.5 studs upwards
+while true do
+    local position = humanoidRootPart.Position
+    local lookVector = humanoidRootPart.CFrame.LookVector
+    local rightVector = humanoidRootPart.CFrame.RightVector * -1 -- Left direction is the negative of the right vector
+    local upVector = Vector3.new(0, 0.5, 0) -- Upward offset
+
+    orb1.Position = position + lookVector * 4 + rightVector * -0.3 + upVector
+    orb2.Position = position + lookVector * 3.5 + rightVector * -0.3 + upVector
+    orb3.Position = position + lookVector * 4.5 + rightVector * -0.3 + upVector
+    wait(0.1) -- Adjust the wait time as needed
+end
