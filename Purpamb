@@ -1,0 +1,137 @@
+-- MLVSHR START FRAMEWORK
+
+-- Place this script in StarterPlayerScripts or another suitable location
+
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Tween settings for the environment
+local tweenInfoEnvironment = TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+local goalEnvironment = {
+    Ambient = Color3.fromRGB(255, 100, 255), -- Black ambient color
+    OutdoorAmbient = Color3.fromRGB(255, 100, 255), -- Black outdoor ambient color
+    Brightness = -10, -- Lower brightness for night effect
+    ClockTime = 18.5, -- Simulate midnight
+    ExposureCompensation = -2 -- Lower exposure for darker effect
+}
+local tweenEnvironment = TweenService:Create(Lighting, tweenInfoEnvironment, goalEnvironment)
+
+
+-- Function to apply tween to the environment
+local function applyEnvironmentTween()
+    tweenEnvironment:Play()
+end
+
+-- Apply tweens
+applyEnvironmentTween()
+
+
+wait(5)
+
+
+-- MLVSHR START FRAMEWORK
+
+-- Place this script in StarterPlayerScripts or another suitable location
+
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Tween settings for the environment
+local tweenInfoEnvironment = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+local goalEnvironment = {
+    Ambient = Color3.fromRGB(255, 100, 255), -- Black ambient color
+    OutdoorAmbient = Color3.fromRGB(255, 100, 255), -- Black outdoor ambient color
+    Brightness = 1, -- Lower brightness for night effect
+    ClockTime = 18.5, -- Simulate midnight
+    ExposureCompensation = 7 -- Lower exposure for darker effect
+}
+local tweenEnvironment = TweenService:Create(Lighting, tweenInfoEnvironment, goalEnvironment)
+
+
+-- Function to apply tween to the environment
+local function applyEnvironmentTween()
+    tweenEnvironment:Play()
+end
+
+-- Apply tweens
+applyEnvironmentTween()
+
+
+
+wait(2)
+
+
+
+
+
+
+-- MLVSHR START FRAMEWORK
+
+-- Place this script in StarterPlayerScripts or another suitable location
+
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Tween settings for the environment
+local tweenInfoEnvironment = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+local goalEnvironment = {
+    Ambient = Color3.fromRGB(255, 100, 255), -- Black ambient color
+    OutdoorAmbient = Color3.fromRGB(255, 100, 255), -- Black outdoor ambient color
+    Brightness = -10, -- Lower brightness for night effect
+    ClockTime = 12, -- Simulate midnight
+    ExposureCompensation = -2 -- Lower exposure for darker effect
+}
+local tweenEnvironment = TweenService:Create(Lighting, tweenInfoEnvironment, goalEnvironment)
+
+
+-- Function to apply tween to the environment
+local function applyEnvironmentTween()
+    tweenEnvironment:Play()
+end
+
+-- Apply tweens
+applyEnvironmentTween()
+
+
+wait(0)
+
+-- MLVSHR START FRAMEWORK
+
+-- Place this script in StarterPlayerScripts or another suitable location
+
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Tween settings for the environment
+local tweenInfoEnvironment = TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+
+-- Goal settings for resetting the environment to normal
+local goalEnvironmentNormal = {
+    Ambient = Color3.fromRGB(127, 127, 127), -- Default ambient color
+    OutdoorAmbient = Color3.fromRGB(127, 127, 127), -- Default outdoor ambient color
+    Brightness = 2, -- Default brightness
+    ClockTime = 12, -- Default time (noon)
+    ExposureCompensation = 0 -- Default exposure
+}
+local tweenEnvironmentNormal = TweenService:Create(Lighting, tweenInfoEnvironment, goalEnvironmentNormal)
+
+-- Function to apply tween to reset the environment
+local function applyEnvironmentResetTween()
+    tweenEnvironmentNormal:Play()
+end
+
+-- Apply tweens to reset environment
+applyEnvironmentResetTween()
+
